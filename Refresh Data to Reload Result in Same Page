@@ -1,0 +1,53 @@
+//There is a simple and fast way to do information retrieval work by AngularJS.
+
+//In the last project, I user redirect function, ng-click for page redirection and loading resualt data.
+//Now you can just write a resualt data loading function to overwrite the ng-init data loading function.
+
+app.controller('mainCtrl', ['$scope', '$http', "$window", function ($scope, $http, $window) {
+    $scope.data = []
+    $scope.loadData = function () {
+        $http({
+                method: 'get',
+                url: "/getData/",
+                headers: {
+                    'content-Type': 'application/json'
+                },
+            })
+            .then(successcallback, errorcallback)
+      }
+    function successcallback(data) {
+        $scope.data = data.data
+    function errorcallback(data) {
+        alert("Please subscribe a service to get Alert.")
+    }
+    
+        $scope.loadResult = function(){
+        search_keyword = $scope.search.keyword
+        search_news = $scope.search.news
+        
+        console.log(search_keyword)
+        console.log(search_news)
+        
+        $http({
+                method: 'POST',
+                url: '/searchKeyword/',
+                data: search_keyword,
+                header: {
+                    'content-Type': 'application/json'
+                }
+        })
+        .then(successSearchCallback, errorSearchCallback);
+    }
+    
+    
+    function successSearchCallback(data){
+        json_search = JSON.parse(data.data)
+        $scope.searchKeyword_result = json_search.searchKeyword_result
+        console.log(' ****************** search result filtered by keyword ****************** ')
+        console.log($scope.searchKeyword_result)
+        //refresh data to reload result
+        $scope.data = $scope.searchKeyword_result
+        $scope.$apply
+    }
+    function errorSearchCallback(data){
+    }
