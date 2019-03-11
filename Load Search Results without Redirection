@@ -1,8 +1,8 @@
 //There is a simple and fast way to do information retrieval work by AngularJS.
 
-//In the last project, I use redirect function, ng-click for page redirection and loading resualt data.
-//Now you can just write a resualt data loading function to 
-//overwrite the ng-init data loading function.
+//Instead of redirect function, ng-click for page redirection and loading resualt data.
+//You can load resualt data by
+//overwriting the ng-init data loading function.
 
 app.controller('mainCtrl', ['$scope', '$http', "$window", function ($scope, $http, $window) {
     $scope.data = []
@@ -46,7 +46,9 @@ app.controller('mainCtrl', ['$scope', '$http', "$window", function ($scope, $htt
         $scope.searchKeyword_result = json_search.searchKeyword_result
         console.log(' ****************** search result filtered by keyword ****************** ')
         console.log($scope.searchKeyword_result)
+        
         //refresh data to reload result
+        
         $scope.data = $scope.searchKeyword_result
         $scope.$apply
     }
