@@ -26,3 +26,12 @@ outputDate();
 </BODY>
 
 </HTML>
+
+
+
+
+
+******************
+new Date()
+document.write()
+toLocaleString()
