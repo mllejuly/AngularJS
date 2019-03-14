@@ -1,0 +1,28 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Using Date Object</TITLE>
+
+<SCRIPT LANGUAGE=JavaScript>
+function outputDate() {
+    //creates today’s date and time
+    var d = new Date();
+    // converts a date to a string
+    document.write(d.toLocaleString());
+    }
+</SCRIPT>
+
+</HEAD>
+
+<BODY>
+
+<H1>The date and time are</H1>
+
+<SCRIPT LANGUAGE=JavaScript>
+outputDate();
+</SCRIPT>
+
+</BODY>
+
+</HTML>
